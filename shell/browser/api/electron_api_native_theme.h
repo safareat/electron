@@ -28,7 +28,7 @@ class NativeTheme : public gin_helper::EventEmitter<NativeTheme>,
   ~NativeTheme() override;
 
   void SetThemeSource(ui::NativeTheme::ThemeSource override);
-#if defined(OS_MACOSX)
+#if defined(OS_MAC)
   void UpdateMacOSAppearanceForOverrideValue(
       ui::NativeTheme::ThemeSource override);
 #endif

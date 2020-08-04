@@ -24,7 +24,7 @@ namespace electron {
 
 namespace api {
 
-#if defined(OS_MACOSX)
+#if defined(OS_MAC)
 enum NotificationCenterKind {
   kNSDistributedNotificationCenter = 0,
   kNSNotificationCenter,
@@ -45,7 +45,7 @@ class SystemPreferences : public gin_helper::EventEmitter<SystemPreferences>
   static void BuildPrototype(v8::Isolate* isolate,
                              v8::Local<v8::FunctionTemplate> prototype);
 
-#if defined(OS_WIN) || defined(OS_MACOSX)
+#if defined(OS_WIN) || defined(OS_MAC)
   std::string GetAccentColor();
   std::string GetColor(gin_helper::ErrorThrower thrower,
                        const std::string& color);
@@ -63,7 +63,7 @@ class SystemPreferences : public gin_helper::EventEmitter<SystemPreferences>
   // BrowserObserver:
   void OnFinishLaunching(const base::DictionaryValue& launch_info) override;
 
-#elif defined(OS_MACOSX)
+#elif defined(OS_MAC)
   using NotificationCallback = base::RepeatingCallback<
       void(const std::string&, base::DictionaryValue, const std::string&)>;
 
@@ -119,7 +119,7 @@ class SystemPreferences : public gin_helper::EventEmitter<SystemPreferences>
   explicit SystemPreferences(v8::Isolate* isolate);
   ~SystemPreferences() override;
 
-#if defined(OS_MACOSX)
+#if defined(OS_MAC)
   int DoSubscribeNotification(const std::string& name,
                               const NotificationCallback& callback,
                               NotificationCenterKind kind);

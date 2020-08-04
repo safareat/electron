@@ -30,7 +30,7 @@ SystemPreferences::~SystemPreferences() {
 #endif
 }
 
-#if !defined(OS_MACOSX)
+#if !defined(OS_MAC)
 bool SystemPreferences::IsDarkMode() {
   return ui::NativeTheme::GetInstanceForNativeUi()->ShouldUseDarkColors();
 }
@@ -70,7 +70,7 @@ void SystemPreferences::BuildPrototype(
     v8::Local<v8::FunctionTemplate> prototype) {
   prototype->SetClassName(gin::StringToV8(isolate, "SystemPreferences"));
   gin_helper::ObjectTemplateBuilder(isolate, prototype->PrototypeTemplate())
-#if defined(OS_WIN) || defined(OS_MACOSX)
+#if defined(OS_WIN) || defined(OS_MAC)
       .SetMethod("getColor", &SystemPreferences::GetColor)
       .SetMethod("getAccentColor", &SystemPreferences::GetAccentColor)
       .SetMethod("getMediaAccessStatus",
@@ -79,7 +79,7 @@ void SystemPreferences::BuildPrototype(
 
 #if defined(OS_WIN)
       .SetMethod("isAeroGlassEnabled", &SystemPreferences::IsAeroGlassEnabled)
-#elif defined(OS_MACOSX)
+#elif defined(OS_MAC)
       .SetMethod("postNotification", &SystemPreferences::PostNotification)
       .SetMethod("subscribeNotification",
                  &SystemPreferences::SubscribeNotification)

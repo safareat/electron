@@ -152,7 +152,7 @@ WebContentsPreferences::WebContentsPreferences(
   } else {
     SetDefaultBoolIfUndefined(options::kAllowRunningInsecureContent, false);
   }
-#if defined(OS_MACOSX)
+#if defined(OS_MAC)
   SetDefaultBoolIfUndefined(options::kScrollBounce, false);
 #endif
   SetDefaultBoolIfUndefined(options::kOffscreen, false);
@@ -378,7 +378,7 @@ void WebContentsPreferences::AppendCommandLineSwitches(
     command_line->AppendSwitchASCII(switches::kOpenerID,
                                     base::NumberToString(opener_id));
 
-#if defined(OS_MACOSX)
+#if defined(OS_MAC)
   // Enable scroll bounce.
   if (IsEnabled(options::kScrollBounce))
     command_line->AppendSwitch(switches::kScrollBounce);
